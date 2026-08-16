@@ -216,14 +216,33 @@
             document.body.classList.toggle('menu-open', isOpen);
         });
         
-        mainNav.querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                setTimeout(function() {
+        function navigateToPage(href) {
+            document.body.classList.add('page-transitioning');
+            setTimeout(function() {
+                window.location.href = href;
+            }, 400);
+        }
+        
+        document.querySelectorAll('.navbar a[href]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+                    if (mobileToggle.classList.contains('active')) {
+                        mainNav.classList.remove('open');
+                        mobileToggle.classList.remove('active');
+                        mobileToggle.setAttribute('aria-expanded', 'false');
+                        document.body.classList.remove('menu-open');
+                    }
+                    return;
+                }
+                e.preventDefault();
+                if (mobileToggle.classList.contains('active')) {
                     mainNav.classList.remove('open');
                     mobileToggle.classList.remove('active');
                     mobileToggle.setAttribute('aria-expanded', 'false');
                     document.body.classList.remove('menu-open');
-                }, 100);
+                }
+                navigateToPage(href);
             });
         });
         

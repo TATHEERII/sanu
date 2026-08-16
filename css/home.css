@@ -46,6 +46,22 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+body.page-transitioning {
+    animation: blurPage 0.4s ease-in-out forwards;
+    pointer-events: none;
+}
+
+@keyframes blurPage {
+    0% {
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+
 /* ================= NAVBAR ================= */
 .navbar {
     position: fixed;
