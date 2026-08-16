@@ -29,7 +29,6 @@
     specialFeatures: '',
     designStyle: '',
     primaryColor: '#6366f1',
-    referenceWebsite: '',
     logo: null,
     images: [],
     existingContent: null,
@@ -423,9 +422,6 @@
     html += '<div class="preview-grid">';
     html += '<div class="preview-item"><span class="preview-label">Style:</span><span class="preview-value">' + escapeHtml(formData.designStyle || 'Not provided') + '</span></div>';
     html += '<div class="preview-item"><span class="preview-label">Primary Color:</span><span class="preview-value"><span style="display:inline-block;width:16px;height:16px;background:' + formData.primaryColor + ';border-radius:50%;margin-right:8px;vertical-align:middle;"></span>' + escapeHtml(formData.primaryColor) + '</span></div>';
-    if (formData.referenceWebsite) {
-      html += '<div class="preview-item" style="grid-column:1/-1;"><span class="preview-label">Reference:</span><span class="preview-value">' + escapeHtml(formData.referenceWebsite) + '</span></div>';
-    }
     html += '</div></div>';
 
     html += '<div class="preview-section">';
@@ -513,9 +509,6 @@
 
     msg += 'Style: ' + encodeURIComponent(formData.designStyle || 'Not provided') + '%0A';
     msg += 'Color: ' + encodeURIComponent(formData.primaryColor) + '%0A';
-    if (formData.referenceWebsite) {
-      msg += 'Reference: ' + encodeURIComponent(formData.referenceWebsite) + '%0A';
-    }
 
     msg += 'Logo: ' + encodeURIComponent(formData.logo || 'Not provided') + '%0A';
     msg += 'Images: ' + encodeURIComponent(formData.images.length > 0 ? formData.images.join(', ') : 'Not provided') + '%0A';
@@ -560,7 +553,6 @@
     formData.specialFeatures = '';
     formData.designStyle = '';
     formData.primaryColor = '#6366f1';
-    formData.referenceWebsite = '';
     formData.logo = null;
     formData.images = [];
     formData.existingContent = null;
@@ -660,8 +652,6 @@
     if (cityCountryEl && formData.cityCountry) cityCountryEl.value = formData.cityCountry;
     var specialFeaturesEl = document.getElementById('specialFeatures');
     if (specialFeaturesEl && formData.specialFeatures) specialFeaturesEl.value = formData.specialFeatures;
-    var referenceWebsiteEl = document.getElementById('referenceWebsite');
-    if (referenceWebsiteEl && formData.referenceWebsite) referenceWebsiteEl.value = formData.referenceWebsite;
     var contentReferenceEl = document.getElementById('contentReference');
     if (contentReferenceEl && formData.contentReference) contentReferenceEl.value = formData.contentReference;
     var contactNameEl = document.getElementById('contactName');
@@ -772,7 +762,7 @@
       }
     });
 
-    var textFields = ['businessName', 'businessCategory', 'businessDescription', 'cityCountry', 'specialFeatures', 'referenceWebsite', 'contentReference', 'contactName', 'contactWhatsApp', 'contactEmail'];
+    var textFields = ['businessName', 'businessCategory', 'businessDescription', 'cityCountry', 'specialFeatures', 'contentReference', 'contactName', 'contactWhatsApp', 'contactEmail'];
     textFields.forEach(function (id) {
       var el = document.getElementById(id);
       if (el) {
