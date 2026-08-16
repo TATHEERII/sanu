@@ -47,18 +47,24 @@ body {
 }
 
 body.page-transitioning {
-    animation: blurPage 0.4s ease-in-out forwards;
+    animation: slidePage 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     pointer-events: none;
 }
 
-@keyframes blurPage {
+@keyframes slidePage {
     0% {
-        filter: blur(0);
+        transform: translateX(0);
         opacity: 1;
+        filter: brightness(1);
+    }
+    40% {
+        opacity: 0.8;
+        filter: brightness(1.4);
     }
     100% {
-        filter: blur(20px);
+        transform: translateX(var(--slide-direction, -60px));
         opacity: 0;
+        filter: brightness(1.6);
     }
 }
 

@@ -217,10 +217,17 @@
         });
         
         function navigateToPage(href) {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const targetPage = href.split('/').pop();
+            const pageOrder = ['index.html', 'services.html', 'pricing.html', 'portfolio.html', 'requirements.html'];
+            const currentIndex = pageOrder.indexOf(currentPage);
+            const targetIndex = pageOrder.indexOf(targetPage);
+            const direction = (targetIndex > currentIndex || currentIndex === -1) ? '-60px' : '60px';
+            document.documentElement.style.setProperty('--slide-direction', direction);
             document.body.classList.add('page-transitioning');
             setTimeout(function() {
                 window.location.href = href;
-            }, 400);
+            }, 450);
         }
         
         document.querySelectorAll('.navbar a[href]').forEach(function(link) {
