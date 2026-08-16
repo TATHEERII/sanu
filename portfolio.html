@@ -463,7 +463,10 @@
             const targetIndex = pageOrder.indexOf(targetPage);
             const direction = (targetIndex > currentIndex || currentIndex === -1) ? '-60px' : '60px';
             document.documentElement.style.setProperty('--slide-direction', direction);
-            document.body.classList.add('page-transitioning');
+            const mainElement = document.querySelector('main');
+            if (mainElement) {
+                mainElement.classList.add('page-transitioning');
+            }
             setTimeout(function() {
                 window.location.href = href;
             }, 450);
